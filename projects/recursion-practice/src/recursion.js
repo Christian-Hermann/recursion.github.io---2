@@ -23,12 +23,15 @@ var factorial = function(n, output = 1) {
 
 // 2. Compute the sum of an array of integers.
 // Example:  sum([1, 2, 3, 4, 5, 6]);  // 21
-var sum = function(array) {
+var sum = function(array, output = 0) {
 
 if(array.length === 0){
-  return 0 
+  return output
 }
+output += array[0]
 
+
+return sum(array.slice(1), output)
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
@@ -38,6 +41,20 @@ var arraySum = function(array) {
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+  // if n is 0 returns true
+  if (n === 0){
+    return true
+  }
+  // if n is 1 returns false
+  if (n === 1){
+    return false
+  }
+  // if n is less than zero call with negative n so it is always positive
+  if (n < 0){
+    return isEven(-n)
+  }
+  // subtract 2 from n to use recursively
+  return isEven(n - 2)
 };
 
 // 5. Sum all integers below a given integer.
@@ -85,7 +102,14 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
-var multiply = function(x, y) {
+var multiply = function(x, y, output = 0) {
+
+if (y === 0){
+ return output
+}
+output += x
+
+return multiply(x, y - 1, output)
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
