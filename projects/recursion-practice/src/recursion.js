@@ -60,7 +60,22 @@ var isEven = function(n) {
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
-var sumBelow = function(n) {
+
+
+     // set default to zero
+var sumBelow = function(n = 0) {
+// base case
+  if(n === 0){
+    return 0
+  }
+ // recursion  - if n > 0 subtract 1 to get down to zero
+  if(n > 0){
+    return (n - 1) + sumBelow(n - 1)
+  }
+   // if negative add 1 to get back up to zero
+  return (n + 1) + sumBelow(n + 1)
+
+
 };
 
 // 6. Get the integers in range (x, y).
