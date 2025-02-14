@@ -148,7 +148,7 @@ return powerOfTwo(n / 2)
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string = "") {
 
-  // base case - if string is empty retuen string
+  // base case - if string is empty return string
 if(string.length === 0){
   return string
 }
@@ -161,11 +161,18 @@ return reverse(string.slice(1)) + string[0]
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
-  string = string.replace(/\s+/g, '').toLowerCase()
-
-  if(string.length <= 0){
+  // set string so that all spaces are removed and changed to lowercase
+  string = string.replace(/\s+/g,'').toLowerCase()
+   // if strings length is less than or equal to 0, it is a palindrome
+  if(string.length <= 1){
     return true
   }
+  // if the first and last letter do not match then it is not a palindrome
+  if (string[0] !== string[string.length - 1]){
+    return false
+  }
+  // recursion // slice the first and last letter as it goes down to base
+  return palindrome(string.slice(1, - 1))
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -180,13 +187,17 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y, output = 0) {
-
+// base case 
 if (y === 0){
  return output
 }
-output += x
 
-return multiply(x, y - 1, output)
+// handles if case is negative
+if (y < 0){
+  return multiply(x, y + 1, output - x)
+}
+// recursion
+return multiply(x, y - 1, output + x)
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
