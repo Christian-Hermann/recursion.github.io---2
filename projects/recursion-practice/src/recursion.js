@@ -80,7 +80,22 @@ var sumBelow = function(n = 0) {
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
-var range = function(x, y) {
+var range = function(x, y, output = []) {
+
+// if x < y we collect numbers in increasing order
+if (x + 1 < y){
+  output.push(x + 1)
+  return range(x + 1, y, output)
+}
+// if x > y we collect numbers in decreasing order
+if (x > y + 1){
+  output.push(x - 1);
+  return range(x - 1, y, output)
+}
+
+return output
+
+
 };
 
 // 7. Compute the exponent of a number.
@@ -89,13 +104,45 @@ var range = function(x, y) {
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+
+   // base case, if exponent is zero return 1
+    if(exp === 0){
+      return 1
+    }
+
+    // handles negative exponents 
+    if (exp < 0){
+      return 1 / exponent(base, -exp);
+    }
+        // recursion
+    return base * exponent(base, exp - 1);
+
 };
 
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
-var powerOfTwo = function(n) {
+var powerOfTwo = function(n, output = true) {
+
+  //base
+  if (n === 1){
+    return output
+  }
+   // if n is less than zero return false
+  if ( n <= 0){
+    return false
+  }
+  // if n is odd return false
+  if (n % 2 !== 0){
+    return false 
+  }
+
+   
+// recursion oppostie of eponent is divding by itself
+return powerOfTwo(n / 2)
+
+
 };
 
 // 9. Write a function that accepts a string a reverses it.
