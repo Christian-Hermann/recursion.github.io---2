@@ -146,7 +146,17 @@ return powerOfTwo(n / 2)
 };
 
 // 9. Write a function that accepts a string a reverses it.
-var reverse = function(string) {
+var reverse = function(string = "") {
+
+  // base case - if string is empty retuen string
+if(string.length === 0){
+  return string
+}
+// recurion - use slice to take off one letter at position zer of the string
+return reverse(string.slice(1)) + string[0]
+
+
+
 };
 
 // 10. Write a function that determines if a string is a palindrome.
