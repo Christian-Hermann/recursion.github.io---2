@@ -187,16 +187,16 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y, output = 0) {
-// base case 
+
 if (y === 0){
  return output
 }
 
-// handles if case is negative
+
 if (y < 0){
   return multiply(x, y + 1, output - x)
 }
-// recursion
+
 return multiply(x, y - 1, output + x)
 };
 
@@ -218,12 +218,43 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
-var compareStr = function(str1, str2) {
-};
+var compareStr = function(str1, str2, index = 0) {
+ 
+ 
+  if (str1.length !== str2.length){
+  return false;
+ }
+
+  if (str1 === "" && str2 === ""){
+   return true;
+  }
+
+  if(str1[0] === str2[0]){
+    return compareStr(str1.slice(1), str2.slice(1))
+     } else {
+      return false;
+     }
+  };
+
+
+ 
+
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str){
+var createArray = function(str, output = []){
+// base case if string is empty return empty array
+if(str === ''){
+  return output
+}
+
+// add first character of the string to the output array
+output.push(str[0])
+
+
+// each index is sliced and added to the inut array
+return createArray(str.slice(0), output)
+
 };
 
 // 17. Reverse the order of an array
