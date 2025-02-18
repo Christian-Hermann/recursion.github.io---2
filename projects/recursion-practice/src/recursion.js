@@ -273,18 +273,57 @@ return reverseArr(array.slice(0,-1), output)
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
-var buildList = function(value, length) {
+var buildList = function(value, length, output = []){
+  // base case - when length equals zero return empty output array
+ if(length === 0){
+   return output
+ }
+// push the value to the array
+ output.push(value)
+ // subtract one from length to go down to base case
+return buildList(value, length - 1, output)
+
 };
 
 // 19. Count the occurence of a value inside a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
-var countOccurrence = function(array, value) {
+var countOccurrence = function(array, value, output = []) {
+
+  // base case - if array.length = zero return output array
+  if(array.length === 0){
+    return output
+  }
+ 
+  // if the first element in array equals value increment output
+  if(array[0] === value){
+    output++
+  }
+  // recursion - call the function with the array
+  return countOccurrence(array.slice(1), value, output)
+
+
 };
 
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
-var rMap = function(array, callback) {
+var rMap = function(array, callback, output = []) {
+// base case - if array length equals zero, return output
+  if(array.length === 0){
+   return output
+}
+// on each recusrion use callback on first elment of array
+output.push(callback(array[0]))
+
+
+// call the rest of the array it is sliced 
+return rMap(array.slice(1), callback, output)
+
+
+
+
+
+
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.
