@@ -218,12 +218,8 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
-var compareStr = function(str1, str2, index = 0) {
+var compareStr = function(str1, str2) {
  
- 
-  if (str1.length !== str2.length){
-  return false;
- }
 
   if (str1 === "" && str2 === ""){
    return true;
@@ -252,13 +248,26 @@ if(str === ''){
 output.push(str[0])
 
 
-// each index is sliced and added to the inut array
-return createArray(str.slice(0), output)
+// each index is sliced and added to the input array
+return createArray(str.slice(1), output)
 
 };
 
 // 17. Reverse the order of an array
-var reverseArr = function (array) {
+var reverseArr = function (array, output = []) {
+
+// base case - if array is equal to zero return empty array output
+if(array.length === 0){
+  return output
+}
+
+// push the last element of the array into output array
+output.push(array[array.length - 1])
+// slice the last element from array and add to output 
+return reverseArr(array.slice(0,-1), output)
+
+
+
 };
 
 // 18. Create a new array with a given value and length.
