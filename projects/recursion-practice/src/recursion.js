@@ -218,7 +218,7 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
-var compareStr = function(str1, str2) {
+var compareStr = function(str1, str2,) {
  
 
   if (str1 === "" && str2 === ""){
@@ -321,9 +321,6 @@ return rMap(array.slice(1), callback, output)
 
 
 
-
-
-
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.
@@ -358,7 +355,21 @@ var fibonacci = function(n) {
 // nthFibo(5); // 5
 // nthFibo(7); // 13
 // nthFibo(3); // 2
-var nthFibo = function(n) {
+var nthFibo = function(n, output = [0, 1]) {
+
+if(n < 0){
+  return null
+}
+
+if(n === 0){
+  return 0
+}
+if(n === 1){
+  return 1
+}
+
+return nthFibo(n - 1)
+
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
