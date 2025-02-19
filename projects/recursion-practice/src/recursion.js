@@ -375,12 +375,32 @@ return nthFibo(n - 1)
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
-var capitalizeWords = function(input) {
+var capitalizeWords = function(input, output = []) {
+
+// base case - if input length equals zero   
+if(input.length === 0){
+  return output
+}
+// capitalize the the first letter at zero index and push to the output array
+output.push(input[0].toUpperCase())
+
+// recursive call for the rest of input
+return capitalizeWords(input.slice(1), output)
+
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
-var capitalizeFirst = function(array) {
+var capitalizeFirst = function(array, output = []) {
+// base case - if array length is eqaul to zero return empty array output
+  if(array.length === 0){
+    return output
+  }
+  // capitalize the first letter and combine with the rest of the string
+  output.push(array[0].charAt(0).toUpperCase() + array[0].slice(1))
+ 
+ return capitalizeFirst(array.slice(1), output)
+
 };
 
 // 28. Return the sum of all even numbers in an object containing nested objects.
@@ -402,7 +422,10 @@ var flatten = function(arrays) {
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
-var letterTally = function(str, obj) {
+var letterTally = function(str, obj = {}) {
+
+
+
 };
 
 // 31. Eliminate consecutive duplicates in a list.  If the list contains repeated
