@@ -424,6 +424,25 @@ var flatten = function(arrays) {
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
 var letterTally = function(str, obj = {}) {
 
+  // base case: if string length equals zero return object
+if(str.length === 0){
+   return obj
+}
+
+// check to see if the object has property already
+// do this with hasOwnProperty - checks to see if property exists
+if(obj.hasOwnProperty(str[0])){
+  // if properry does exist increment count
+  obj[str[0]] ++
+  // if property does not exist add it and set to 1
+} else {
+  obj[str[0]] = 1
+}
+
+// rescursion with the rest of the string
+return letterTally(str.slice(1), obj)
+
+
 
 
 };
@@ -433,7 +452,21 @@ var letterTally = function(str, obj = {}) {
 // elements should not be changed.
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
-var compress = function(list) {
+var compress = function(list, output = []) {
+
+// base case: 
+if(list.length === 0){
+  return output
+}
+// if the output is zero
+// or zero index is different from the last element pushed to the array
+if(output.length === 0 || list[0] !== output[output.length - 1])
+output.push(list[0])
+
+
+// recursion with the rest of the list
+return compress(list.slice(1), output)
+
 };
 
 // 32. Augment every element in a list with a new value where each element is an array
