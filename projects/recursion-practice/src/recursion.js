@@ -500,7 +500,31 @@ var minimizeZeroes = function(array, output = []) {
 // their original sign.  The first number in the index always needs to be positive.
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
-var alternateSign = function(array) {
+var alternateSign = function(array, output = []) {
+
+  // base case: if the array is equal to zero return empty array
+  if (array.length === 0){
+    return output
+  }
+   // set element equal to the first element in the array
+   let element = array[0]
+
+// output starts at the first number which should be positive.
+// then pushes everyother number which also needs to be positive
+// Math.abs checks the absolut value of a number
+   if(output.length % 2 === 0){
+    output.push(Math.abs(element))
+   // if element is an odd number use the inverse of Math.abs to make negative
+   } else {
+    output.push(-Math.abs(element))
+   }
+
+
+  // recursive to the next index in the array
+  return alternateSign(array.slice(1), output)
+
+
+
 };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
